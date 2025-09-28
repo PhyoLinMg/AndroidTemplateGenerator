@@ -11,7 +11,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         <#if useCompose?? && useCompose>
         setContent {
-            MyApp()
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                MyApp()
+            }
         }
         <#else>
         setContentView(R.layout.activity_main)

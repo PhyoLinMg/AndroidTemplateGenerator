@@ -1,5 +1,6 @@
 package dev.linmaung.androidtemplategenerator.generator.templates.basic
 
+import dev.linmaung.androidtemplategenerator.generator.templates.GenericPath
 
 
 //data class BasicPath(
@@ -19,23 +20,15 @@ package dev.linmaung.androidtemplategenerator.generator.templates.basic
 //    )
 //}
 
-data class BasicPath(
-    val templatePath: String,
-    val targetDirectory: String,
-    val targetFilename: String? = null // Optional custom filename
-)
-
 object BasicTemplate {
-    val templates = listOf(
-        // Root directory files
-        BasicPath("settings.gradle.kts.ftl", ""),
-        BasicPath("build.gradle.kts.ftl", ""),
+    val basicTemplate= listOf(
+
         // App directory files
-        BasicPath("app/build.gradle.kts.ftl", "app", "build.gradle.kts"),
+        GenericPath("basic/app/build.gradle.kts.ftl", "app", "build.gradle.kts"),
 
 
-        BasicPath("MainActivity.kt.ftl", "app/src/main/java/{packagePath}"),
-        BasicPath("")
+        GenericPath("basic/MainActivity.kt.ftl", "app/src/main/java/{packagePath}"),
+
 
     )
 }
