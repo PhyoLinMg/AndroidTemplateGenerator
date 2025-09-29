@@ -29,6 +29,6 @@ object BasicTemplate {
 
         GenericPath("basic/MainActivity.kt.ftl", "app/src/main/java/{packagePath}"),
 
-
+        GenericPath("basic/theme/theme.kt.ftl", "app/src/main/java/{packagePath}/ui/theme", "Theme.kt"),
     )
 }
