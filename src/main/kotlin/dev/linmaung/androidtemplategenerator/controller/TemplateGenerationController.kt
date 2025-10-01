@@ -1,7 +1,7 @@
 package dev.linmaung.androidtemplategenerator.controller
 
 import ProjectGenerator
-import dev.linmaung.androidtemplategenerator.model.ProjectRequest
+import dev.linmaung.androidtemplategenerator.model.basic.BasicRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -18,7 +18,7 @@ class TemplateGenerationController(
     private val generator: ProjectGenerator
 ) {
         @PostMapping("/basic/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
-    fun generate(@RequestBody request: ProjectRequest): ResponseEntity<ByteArray> {
+    fun generateBasic(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
         return try {
             val zipBytes = generator.generateBasic(request)
             ResponseEntity.ok()
@@ -32,4 +32,14 @@ class TemplateGenerationController(
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
         }
     }
+
+//    @PostMapping("/advanced/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
+//    fun generateAdvanced(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
+//
+//    }
+//
+//    @PostMapping("/intermediate/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
+//    fun generateAdvanced(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
+//
+//    }
 }

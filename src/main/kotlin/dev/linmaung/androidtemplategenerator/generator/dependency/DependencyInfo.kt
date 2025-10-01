@@ -1,10 +1,20 @@
 package dev.linmaung.androidtemplategenerator.generator.dependency
 
 data class DependencyInfo(
+    // this can be implementation, kapt, testImplementation, androidTestImplementation
+    val type: String = Dependency.IMPLEMENTATION.toString().lowercase(),
+    val name: String,
     val version: VersionRequirement,
-    val plugin: PluginRequirement?= null,
     val libraryRequirement: LibraryRequirement,
 )
+
+enum class Dependency{
+    IMPLEMENTATION,
+    KAPT,
+    API,
+    TEST_IMPLEMENTATION,
+    ANDROID_TEST_IMPLEMENTATION,
+}
 
 data class VersionRequirement(
     val key:String,

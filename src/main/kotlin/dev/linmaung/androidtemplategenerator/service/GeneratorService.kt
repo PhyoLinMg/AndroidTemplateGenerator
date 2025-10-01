@@ -1,13 +1,12 @@
 import dev.linmaung.androidtemplategenerator.generator.templates.CommonTemplate
 import dev.linmaung.androidtemplategenerator.generator.templates.basic.BasicTemplate
-import dev.linmaung.androidtemplategenerator.model.ProjectRequest
+import dev.linmaung.androidtemplategenerator.model.basic.BasicRequest
 import freemarker.template.Configuration
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream
 import org.springframework.stereotype.Service
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.InputStream
 import java.io.StringWriter
 import java.nio.file.Files
 
@@ -15,7 +14,7 @@ import java.nio.file.Files
 class ProjectGenerator(
     private val freemarkerConfig: Configuration
 ) {
-    fun generateBasic(request: ProjectRequest): ByteArray {
+    fun generateBasic(request: BasicRequest): ByteArray {
         val tempDir = Files.createTempDirectory("android-init").toFile()
 
         try {
@@ -23,20 +22,17 @@ class ProjectGenerator(
                 "projectName" to request.projectName,
                 "packageName" to request.packageName,
                 "packagePath" to request.packageName.replace(".", "/"),
-                "useRetrofit" to request.useRetrofit,
-                "useKtor" to request.useKtor,
-                "useCoroutines" to request.useCoroutines,
-                "useCompose" to request.useCompose
+                "compileTime" to request.compileTime,
+                "networkClientType" to request.networkClientType,
+                "dependencyInjectionType" to request.dependencyInjectionType
             )
 
-            // Generate template files using the template list
             val template= BasicTemplate.basicTemplate+ CommonTemplate.commonTemplate
             template.forEach { basicPath ->
                 val resolvedTargetDir = resolveTargetDirectory(basicPath.targetDirectory, model, tempDir)
                 copyAndProcessTemplate(basicPath.templatePath, resolvedTargetDir, model, basicPath.targetFilename)
             }
 
-            // Create ZIP in memory instead of temporary file
             val byteArrayOutputStream = ByteArrayOutputStream()
             ZipArchiveOutputStream(byteArrayOutputStream).use { zipOut ->
                 tempDir.walk()
@@ -50,7 +46,7 @@ class ProjectGenerator(
                         file.inputStream().use { it.copyTo(zipOut) }
                         zipOut.closeArchiveEntry()
                     }
-                zipOut.finish() // Ensure all data is written
+                zipOut.finish()
             }
 
             return byteArrayOutputStream.toByteArray()
@@ -68,6 +64,13 @@ class ProjectGenerator(
             val resolvedPath = targetDirectory.replace("{packagePath}", model["packagePath"].toString())
             File(tempDir, resolvedPath)
         }
+    }
+
+    private fun generateIntermediate(){
+
+    }
+    private fun generateAdvanced(){
+
     }
 
     private fun copyAndProcessTemplate(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
