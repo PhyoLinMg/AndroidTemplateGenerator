@@ -56,5 +56,43 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
+    <#if dependencyInjectionType=="Hilt">
+    // Hilt dependencies
+    <#list dependencies["hilt"] as dep>
+    <#if compileTime=="KSP" && dep.name=="hilt-compiler">
+    ${dep.toType(compileTime?lower_case)}(libs.${dep.toGradleName()})
+    <#else>
+    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+    </#if>
+    </#list>
+    <#else>
+    // Koin dependencies
+    <#list dependencies["koin"] as dep>
+    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+    </#list>
+    </#if>
+
+    <#if networkClientType=="Retrofit">
+    // Retrofit dependencies
+    <#list dependencies["retrofit"] as dep>
+    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+    </#list>
+    <#else>
+    // Ktor dependencies
+    <#list dependencies["ktor"] as dep>
+    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+    </#list>
+    </#if>
+
+    <#list dependencies["coroutines"] as dep>
+    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+    </#list>
+
+
+    <#list dependencies["lifecycle"] as dep>
+    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+    </#list>
+
+
 
 }

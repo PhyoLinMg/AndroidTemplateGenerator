@@ -1,3 +1,6 @@
+import dev.linmaung.androidtemplategenerator.generator.dependency.dependencyRegistry
+import dev.linmaung.androidtemplategenerator.generator.dependency.pluginRegistry
+import dev.linmaung.androidtemplategenerator.generator.dependency.versionRegistry
 import dev.linmaung.androidtemplategenerator.generator.templates.CommonTemplate
 import dev.linmaung.androidtemplategenerator.generator.templates.basic.BasicTemplate
 import dev.linmaung.androidtemplategenerator.model.basic.BasicRequest
@@ -24,7 +27,10 @@ class ProjectGenerator(
                 "packagePath" to request.packageName.replace(".", "/"),
                 "compileTime" to request.compileTime,
                 "networkClientType" to request.networkClientType,
-                "dependencyInjectionType" to request.dependencyInjectionType
+                "dependencyInjectionType" to request.dependencyInjectionType,
+                "dependencies" to dependencyRegistry,
+                "plugins" to pluginRegistry,
+                "versions" to versionRegistry
             )
 
             val template= BasicTemplate.basicTemplate+ CommonTemplate.commonTemplate

@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +18,12 @@ import org.springframework.web.bind.annotation.RestController
 class TemplateGenerationController(
     private val generator: ProjectGenerator
 ) {
-        @PostMapping("/basic/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
+    @GetMapping("/health")
+    fun healthCheck(): ResponseEntity<String> {
+        return ResponseEntity.ok("API is running")
+    }
+
+    @PostMapping("/basic/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
     fun generateBasic(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
         return try {
             val zipBytes = generator.generateBasic(request)
@@ -43,3 +49,8 @@ class TemplateGenerationController(
 //
 //    }
 }
+
+data class TestRequest(
+    val projectName: String,
+    val packageName: String
+)

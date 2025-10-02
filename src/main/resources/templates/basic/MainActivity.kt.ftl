@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        <#if useCompose?? && useCompose>
+
         setContent {
             ${projectName}Theme{
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -24,15 +24,12 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        <#else>
-        setContentView(R.layout.activity_main)
-        </#if>
+
     }
 }
 
-<#if useCompose?? && useCompose>
+
 @Composable
 fun MyApp(modifier: Modifier= Modifier) {
     Text("Hello from ${projectName}!", modifier= modifier)
 }
-</#if>

@@ -3,9 +3,15 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
-    <#if model.compileTime=="KSP">
+    <#if compileTime=="KSP">
     alias(libs.plugins.ksp) apply false
     <#else>
     alias(libs.plugins.kapt) apply false
     </#if>
+
+    <#if networkClientType=="Hilt">
+    alias(libs.plugins.hilt) apply false
+    </#if>
+
+
 }

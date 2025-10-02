@@ -1,93 +1,129 @@
 package dev.linmaung.androidtemplategenerator.generator.dependency
 
-private val dependencyRegistry = mapOf(
+val dependencyRegistry = mapOf(
     "hilt" to listOf(
         DependencyInfo(
             name= "hilt-android",
             version = VersionConstant.hilt,
-            libraryRequirement = LibraryConstant.hiltAndroid,
+            library = LibraryConstant.hiltAndroid,
         ),
         DependencyInfo(
-            type= Dependency.KAPT.toString().lowercase(),
             name= "hilt-compiler",
             version = VersionConstant.hilt,
-            libraryRequirement = LibraryConstant.hiltCompiler,
+            library = LibraryConstant.hiltCompiler,
         ),
 
         DependencyInfo(
             name = "hilt-nav-fragment",
-            version = VersionConstant.hilt,
-            libraryRequirement = LibraryConstant.hiltNavFragment
+            version = VersionConstant.hiltx,
+            library = LibraryConstant.hiltNavFragment
         ),
         DependencyInfo(
             name = "hilt-nav-compose",
-            version = VersionConstant.hilt,
-            libraryRequirement = LibraryConstant.hiltNavCompose
+            version = VersionConstant.hiltx,
+            library = LibraryConstant.hiltNavCompose
+        )
+    ),
+    "retrofit" to listOf(
+        DependencyInfo(
+            name= "retrofit",
+            version = VersionConstant.retrofit,
+            library = LibraryConstant.retrofit,
+        ),
+        DependencyInfo(
+            name= "retrofit-gson",
+            version = VersionConstant.retrofit,
+            library = LibraryConstant.retrofitGson,
+        ),
+        DependencyInfo(
+            name= "okhttp",
+            version = VersionConstant.okhttp,
+            library = LibraryConstant.okhttp,
+        ),
+        DependencyInfo(
+            name= "okhttp-logging",
+            version = VersionConstant.okhttp,
+            library = LibraryConstant.okhttpLogging,
         )
     ),
     "koin" to listOf(
         DependencyInfo(
             name= "koin-android",
             version = VersionConstant.koin,
-            libraryRequirement = LibraryConstant.koinAndroid,
+            library = LibraryConstant.koinAndroid,
         ),
         DependencyInfo(
             name= "koin-compose",
             version = VersionConstant.koin,
-            libraryRequirement = LibraryConstant.koinCompose,
+            library = LibraryConstant.koinCompose,
         ),
     ),
     "ktor" to listOf(
-        DependencyInfo(name="ktor-core", libraryRequirement = LibraryConstant.ktorCore, version = VersionConstant.ktor),
-        DependencyInfo(name = "ktor-android", libraryRequirement = LibraryConstant.ktorAndroid, version= VersionConstant.ktor),
-        DependencyInfo(name = "ktor-logging", libraryRequirement = LibraryConstant.ktorLogging, version = VersionConstant.ktor),
-        DependencyInfo(name = "ktor-serialization", libraryRequirement = LibraryConstant.ktorSerialization, version = VersionConstant.ktor),
+        DependencyInfo(name="ktor-core", library = LibraryConstant.ktorCore, version = VersionConstant.ktor),
+        DependencyInfo(name = "ktor-android", library = LibraryConstant.ktorAndroid, version= VersionConstant.ktor),
+        DependencyInfo(name = "ktor-logging", library = LibraryConstant.ktorLogging, version = VersionConstant.ktor),
+        DependencyInfo(name = "ktor-serialization", library = LibraryConstant.ktorSerialization, version = VersionConstant.ktor),
     ),
-
     "viewmodel" to listOf(
         DependencyInfo(
             name= "lifecycle-viewmodel",
             version = VersionConstant.lifecycle,
-            libraryRequirement = LibraryConstant.lifecycleViewModel,
+            library = LibraryConstant.lifecycleViewModel,
         ),
     ),
     "coroutines" to listOf(
         DependencyInfo(
             name= "coroutines-core",
             version = VersionConstant.coroutines,
-            libraryRequirement = LibraryConstant.coroutinesCore,
+            library = LibraryConstant.coroutinesCore,
         ),
         DependencyInfo(
             name= "coroutines-android",
             version = VersionConstant.coroutines,
-            libraryRequirement = LibraryConstant.coroutinesAndroid,
+            library = LibraryConstant.coroutinesAndroid,
         )
     ),
     "ktor" to listOf(
         DependencyInfo(
             name= "ktor-core",
             version = VersionConstant.ktor,
-            libraryRequirement = LibraryConstant.ktorCore,
+            library = LibraryConstant.ktorCore,
         ),
         DependencyInfo(
             name= "ktor-android",
             version = VersionConstant.ktor,
-            libraryRequirement = LibraryConstant.ktorAndroid,
+            library = LibraryConstant.ktorAndroid,
         ),
         DependencyInfo(
             name= "ktor-logging",
             version = VersionConstant.ktor,
-            libraryRequirement = LibraryConstant.ktorLogging,
+            library = LibraryConstant.ktorLogging,
         ),
         DependencyInfo(
             name= "ktor-serialization",
             version = VersionConstant.ktor,
-            libraryRequirement = LibraryConstant.ktorSerialization,
+            library = LibraryConstant.ktorSerialization,
         )
     )
+)
 
+val pluginRegistry = mapOf(
+    "hilt" to Plugins.hilt,
+    "ksp" to Plugins.ksp,
+    "kapt" to Plugins.kapt
+)
 
-
+val versionRegistry= mapOf(
+    "retrofit" to VersionConstant.retrofit,
+    "okhttp" to VersionConstant.okhttp,
+    "kotlin" to VersionConstant.kotlin,
+    "hilt" to VersionConstant.hilt,
+    "hiltx" to VersionConstant.hiltx,
+    "coroutines" to VersionConstant.coroutines,
+    "lifecycle" to VersionConstant.lifecycle,
+    "ksp" to VersionConstant.ksp,
+    "koin" to VersionConstant.koin,
+    "ktor" to VersionConstant.ktor,
 )
 
 object VersionConstant{

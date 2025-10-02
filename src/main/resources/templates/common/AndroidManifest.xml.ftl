@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".${projectName}Application"
         android:allowBackup="true"
         android:label="${projectName}"
         android:supportsRtl="true">
