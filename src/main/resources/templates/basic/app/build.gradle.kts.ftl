@@ -2,6 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    <#if dependencyInjectionType=="Hilt">
+    alias(libs.plugins.${plugins["hilt"].key})
+    </#if>
+    <#if compileTime=="KSP">
+    alias(libs.plugins.${plugins["ksp"].key})
+    <#else>
+    alias(libs.plugins.${plugins["kapt"].key})
+    </#if>
 }
 
 android {
@@ -89,7 +98,7 @@ dependencies {
     </#list>
 
 
-    <#list dependencies["lifecycle"] as dep>
+    <#list dependencies["viewmodel"] as dep>
     ${dep.toType("implementation")}(libs.${dep.toGradleName()})
     </#list>
 

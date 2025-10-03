@@ -10,7 +10,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import ${packageName}.ui.theme.MyAppTheme
+
 
 private val DarkColorScheme = darkColorScheme(
     primary = Color.Gray,

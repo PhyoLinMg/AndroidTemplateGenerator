@@ -11,7 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import ${packageName}.ui.theme.${projectName}Theme
+<#if dependencyInjectionType=="Hilt">
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+</#if>
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

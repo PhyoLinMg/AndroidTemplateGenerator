@@ -1,14 +1,13 @@
 package ${packageName}
 
 import android.app.Application
-<#if dependencyInjectionType== "Hilt">
+<#if dependencyInjectionType== "Koin">
 import org.koin.android.ext.koin.androidContext
-<#else>
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-</#if>
+<#else>
+import dagger.hilt.android.HiltAndroidApp
 
-<#if dependencyInjectionType== "Hilt">
 @HiltAndroidApp
 </#if>
 class ${projectName}Application: Application(){
@@ -18,7 +17,7 @@ class ${projectName}Application: Application(){
         <#if dependencyInjectionType== "Koin">
         startKoin {
             androidLogger()
-            androidContext(this@BasicTemplateApplication)
+            androidContext(this@${projectName}Application)
             //load your modules
         }
         </#if>

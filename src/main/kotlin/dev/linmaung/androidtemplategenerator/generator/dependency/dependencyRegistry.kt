@@ -170,5 +170,5 @@ object LibraryConstant{
 object Plugins{
     val hilt= PluginRequirement("hilt","com.google.dagger.hilt.android", VersionConstant.hilt)
     val ksp= PluginRequirement("ksp","com.google.devtools.ksp", VersionConstant.ksp)
-    val kapt= PluginRequirement("kapt","kotlin-kapt", VersionConstant.kotlin)
+    val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
 }

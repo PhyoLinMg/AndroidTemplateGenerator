@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.kapt) apply false
     </#if>
 
-    <#if networkClientType=="Hilt">
+    <#if dependencyInjectionType=="Hilt">
     alias(libs.plugins.hilt) apply false
     </#if>
 

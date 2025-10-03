@@ -18,14 +18,13 @@ ${versions.koin.key} = "${versions.koin.version}"
 
 <#if networkClientType=="Retrofit">
 ${versions.retrofit.key} = "${versions.retrofit.version}"
+${versions.okhttp.key} = "${versions.okhttp.version}"
 <#else>
 ${versions.ktor.key} = "${versions.ktor.version}"
 </#if>
 
 <#if compileTime=="KSP">
 ${versions.ksp.key} = "${versions.ksp.version}"
-<#else>
-${versions.kapt.key} = "${versions.kapt.version}"
 </#if>
 
 ${versions.coroutines.key} = "${versions.coroutines.version}"
@@ -73,6 +72,12 @@ ${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}"
 
 # Coroutines Dependencies
 <#list dependencies["coroutines"] as dep>
+${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
+</#list>
+
+
+# Lifecycle Dependencies
+<#list dependencies["viewmodel"] as dep>
 ${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
 </#list>
 
