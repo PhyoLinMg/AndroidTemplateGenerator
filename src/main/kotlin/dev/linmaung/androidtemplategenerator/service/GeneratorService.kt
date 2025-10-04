@@ -36,7 +36,7 @@ class ProjectGenerator(
             val template= BasicTemplate.basicTemplate+ CommonTemplate.commonTemplate
             template.forEach { basicPath ->
                 val resolvedTargetDir = resolveTargetDirectory(basicPath.targetDirectory, model, tempDir)
-                copyAndProcessTemplate(basicPath.templatePath, resolvedTargetDir, model, basicPath.targetFilename)
+                copyAndProcessTemplate2(basicPath.templatePath, resolvedTargetDir, model, basicPath.targetFilename)
             }
 
             val byteArrayOutputStream = ByteArrayOutputStream()
@@ -77,6 +77,37 @@ class ProjectGenerator(
     }
     private fun generateAdvanced(){
 
+    }
+    private fun copyAndProcessTemplate2(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
+        val isFtlTemplate = templatePath.contains(".ftl")
+
+        if (isFtlTemplate) {
+            val template = freemarkerConfig.getTemplate(templatePath)
+
+            val output = StringWriter().apply {
+                template.process(model, this)
+            }.toString()
+
+            val filename = targetFilename ?: templatePath.substringAfterLast("/").removeSuffix(".ftl")
+
+            val file = File(targetDir, filename)
+            file.parentFile.mkdirs()
+            file.writeText(output)
+        } else {
+            // Use classloader to read from resources
+            val resourcePath = "templates/$templatePath"
+            val inputStream = javaClass.classLoader.getResourceAsStream(resourcePath)
+                ?: throw IllegalArgumentException("Resource not found: $resourcePath")
+
+            val file = File(targetDir, targetFilename ?: "")
+            file.parentFile.mkdirs()
+
+            inputStream.use { input ->
+                file.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+        }
     }
 
     private fun copyAndProcessTemplate(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
