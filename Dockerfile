@@ -6,9 +6,7 @@ COPY src src
 RUN gradle build -x test --no-daemon
 
 FROM openjdk:17-jdk-slim
-RUN addgroup --system spring && adduser --system spring --ingroup spring
-USER spring:spring
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-Dserver.address=0.0.0.0", "-jar", "app.jar"]
