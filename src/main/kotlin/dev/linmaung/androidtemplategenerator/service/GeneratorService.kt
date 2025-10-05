@@ -36,7 +36,7 @@ class ProjectGenerator(
             val template= BasicTemplate.basicTemplate+ CommonTemplate.commonTemplate
             template.forEach { basicPath ->
                 val resolvedTargetDir = resolveTargetDirectory(basicPath.targetDirectory, model, tempDir)
-                copyAndProcessTemplate2(basicPath.templatePath, resolvedTargetDir, model, basicPath.targetFilename)
+                copyAndProcessTemplate(basicPath.templatePath, resolvedTargetDir, model, basicPath.targetFilename)
             }
 
             val byteArrayOutputStream = ByteArrayOutputStream()
@@ -78,7 +78,7 @@ class ProjectGenerator(
     private fun generateAdvanced(){
 
     }
-    private fun copyAndProcessTemplate2(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
+    private fun copyAndProcessTemplate(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
         val isFtlTemplate = templatePath.contains(".ftl")
 
         if (isFtlTemplate) {
@@ -110,28 +110,4 @@ class ProjectGenerator(
         }
     }
 
-    private fun copyAndProcessTemplate(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
-        val isFtlTemplate = templatePath.contains(".ftl")
-
-        if(isFtlTemplate){
-            val template =
-                freemarkerConfig.getTemplate(templatePath)
-
-            val output = StringWriter().apply {
-                template.process(model, this)
-            }.toString()
-            val filename =
-                targetFilename ?: templatePath.substringAfterLast("/").removeSuffix(".ftl")
-
-            val file = File(targetDir, filename)
-            file.parentFile.mkdirs()
-            file.writeText(output)
-        }
-        else {
-            val file= File(targetDir, targetFilename?:"")
-            val sourceFile= File("src/main/resources/templates/$templatePath")
-            file.parentFile.mkdirs()
-            sourceFile.copyTo(file, overwrite = true)
-        }
-    }
 }

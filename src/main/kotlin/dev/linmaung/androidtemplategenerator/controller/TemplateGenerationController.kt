@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RestController
 class TemplateGenerationController(
     private val generator: ProjectGenerator
 ) {
-    @GetMapping("/health")
-    fun healthCheck(): ResponseEntity<String> {
-        return ResponseEntity.ok("API is running")
-    }
-
     @PostMapping("/basic/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
     fun generateBasic(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
         return try {
