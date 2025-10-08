@@ -3,25 +3,28 @@ package dev.linmaung.androidtemplategenerator.model.basic
 data class BasicRequest(
     val projectName: String,
     val packageName: String,
-    val compileTime: String= CompileTime.KSP.toString(),
-    val networkClientType: String= NetworkClientType.Ktor.toString(),
-    val dependencyInjectionType: String = DependencyInjectionType.Hilt.toString()
-)
+    val compilerType: String = "ksp",
+    val dependencyList: List<String> = listOf("hilt", "retrofit","coroutines","viewmodel").map { it.lowercase() },
+){
+    val pluginList: List<String>
+        get() {
+            val plugins = mutableListOf<String>()
 
-enum class CompileTime{
-    KAPT,
-    KSP
-}
+            // Add dependency-specific plugins
+            if (dependencyList.contains("hilt")) {
+                plugins.add("hilt")
+            }
+
+            // Add compiler plugin if any dependency needs annotation processing
+            val requiresAnnotationProcessing = listOf("hilt", "room", "moshi")
+            if (dependencyList.any { it in requiresAnnotationProcessing }) {
+                plugins.add(compilerType.lowercase())
+            }
+
+            return plugins.distinct()
+        }
 
 
-enum class NetworkClientType{
-    Retrofit,
-    Ktor
-}
-
-enum class DependencyInjectionType{
-    Hilt,
-    Koin,
 }
 
 

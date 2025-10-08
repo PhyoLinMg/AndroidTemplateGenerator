@@ -3,13 +3,13 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
-    <#if compileTime=="KSP">
+    <#if pluginList?seq_contains("ksp")>
     alias(libs.plugins.ksp) apply false
     <#else>
     alias(libs.plugins.kapt) apply false
     </#if>
 
-    <#if dependencyInjectionType=="Hilt">
+    <#if pluginList?seq_contains("hilt")>
     alias(libs.plugins.hilt) apply false
     </#if>
 

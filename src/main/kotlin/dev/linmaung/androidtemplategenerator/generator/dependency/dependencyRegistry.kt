@@ -114,16 +114,32 @@ val pluginRegistry = mapOf(
 )
 
 val versionRegistry= mapOf(
-    "retrofit" to VersionConstant.retrofit,
-    "okhttp" to VersionConstant.okhttp,
-    "kotlin" to VersionConstant.kotlin,
-    "hilt" to VersionConstant.hilt,
-    "hiltx" to VersionConstant.hiltx,
-    "coroutines" to VersionConstant.coroutines,
-    "lifecycle" to VersionConstant.lifecycle,
-    "ksp" to VersionConstant.ksp,
-    "koin" to VersionConstant.koin,
-    "ktor" to VersionConstant.ktor,
+    "retrofit" to listOf(
+        VersionConstant.retrofit,
+        VersionConstant.okhttp,
+    ),
+    "kotlin" to listOf(
+        VersionConstant.kotlin
+    ),
+    "hilt" to listOf(
+        VersionConstant.hilt,
+        VersionConstant.hiltx,
+    ),
+    "coroutines" to listOf(
+        VersionConstant.coroutines
+    ),
+    "viewmodel" to listOf(
+        VersionConstant.lifecycle
+    ),
+    "ksp" to listOf(
+        VersionConstant.ksp
+    ),
+    "koin" to listOf(
+        VersionConstant.koin
+    ),
+    "ktor" to listOf(
+        VersionConstant.ktor
+    ),
 )
 
 object VersionConstant{
@@ -135,7 +151,7 @@ object VersionConstant{
     val hiltx= VersionRequirement("hiltx","1.3.0")
 
     val coroutines= VersionRequirement("coroutines","1.10.2")
-    val lifecycle= VersionRequirement("lifecycle", "2.7.3")
+    val lifecycle= VersionRequirement("viewmodel", "2.7.3")
     val ksp= VersionRequirement("ksp", "2.2.20-2.0.2")
     val koin= VersionRequirement("koin","4.1.1")
 

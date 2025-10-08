@@ -3,14 +3,12 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
-    <#if dependencyInjectionType=="Hilt">
-    alias(libs.plugins.${plugins["hilt"].key})
-    </#if>
-    <#if compileTime=="KSP">
-    alias(libs.plugins.${plugins["ksp"].key})
-    <#else>
-    alias(libs.plugins.${plugins["kapt"].key})
-    </#if>
+    <#list pluginList as pluginKey>
+      <#if plugins[pluginKey]??>
+        alias(libs.plugins.${plugins[pluginKey].key})
+      </#if>
+    </#list>
+
 }
 
 android {
@@ -65,42 +63,20 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    <#if dependencyInjectionType=="Hilt">
-    // Hilt dependencies
-    <#list dependencies["hilt"] as dep>
-    <#if compileTime=="KSP" && dep.name=="hilt-compiler">
-    ${dep.toType(compileTime?lower_case)}(libs.${dep.toGradleName()})
-    <#else>
-    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-    </#if>
-    </#list>
-    <#else>
-    // Koin dependencies
-    <#list dependencies["koin"] as dep>
-    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-    </#list>
-    </#if>
-
-    <#if networkClientType=="Retrofit">
-    // Retrofit dependencies
-    <#list dependencies["retrofit"] as dep>
-    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-    </#list>
-    <#else>
-    // Ktor dependencies
-    <#list dependencies["ktor"] as dep>
-    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-    </#list>
-    </#if>
-
-    <#list dependencies["coroutines"] as dep>
-    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-    </#list>
-
-
-    <#list dependencies["viewmodel"] as dep>
-    ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-    </#list>
+   <#list dependencyList as depKey>
+     <#if dependencies[depKey]??>
+       // ${depKey?cap_first} dependencies
+       <#list dependencies[depKey] as dep>
+         <#if (compilerType== "ksp" && dep.name == "hilt-compiler" || dep.name == "room-compiler")>
+       ${dep.toType("ksp")}(libs.${dep.toGradleName()})
+         <#elseif (dep.name == "hilt-compiler" || dep.name == "room-compiler")>
+       ${dep.toType("kapt")}(libs.${dep.toGradleName()})
+         <#else>
+       ${dep.toType("implementation")}(libs.${dep.toGradleName()})
+         </#if>
+       </#list>
+     </#if>
+   </#list>
 
 
 
