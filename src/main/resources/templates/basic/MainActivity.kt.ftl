@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import ${packageName}.ui.theme.${projectName}Theme
-<#if dependencyInjectionType=="Hilt">
+<#if dependencyList?seq_contains("hilt")>
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +31,6 @@ class MainActivity : ComponentActivity() {
 
     }
 }
-
 
 @Composable
 fun MyApp(modifier: Modifier= Modifier) {

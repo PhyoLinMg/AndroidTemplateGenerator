@@ -9,26 +9,22 @@ lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.11.0"
 composeBom = "2024.09.00"
 
-<#if dependencyInjectionType=="Hilt">
-${versions.hilt.key} = "${versions.hilt.version}"
-${versions.hiltx.key} = "${versions.hiltx.version}"
-<#else>
-${versions.koin.key} = "${versions.koin.version}"
-</#if>
+<#assign uniqueMap = {}>
+<#list dependencyList + pluginList as item>
+  <#assign uniqueMap = uniqueMap + {item: true}>
+</#list>
 
-<#if networkClientType=="Retrofit">
-${versions.retrofit.key} = "${versions.retrofit.version}"
-${versions.okhttp.key} = "${versions.okhttp.version}"
-<#else>
-${versions.ktor.key} = "${versions.ktor.version}"
-</#if>
+<#-- Extract keys as the merged unique list -->
+<#assign mergedList = uniqueMap?keys>
 
-<#if compileTime=="KSP">
-${versions.ksp.key} = "${versions.ksp.version}"
+<#list mergedList as depKey>
+<#if versions[depKey]??>
+<#list versions[depKey] as ver>
+${ver.key} = "${ver.version}"
+</#list>
 </#if>
+</#list>
 
-${versions.coroutines.key} = "${versions.coroutines.version}"
-${versions.lifecycle.key} = "${versions.lifecycle.version}"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,39 +42,13 @@ androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
-# Hilt Dependencies
-<#if dependencyInjectionType=="Hilt">
-<#list dependencies["hilt"] as dep>
+<#list dependencyList as depKey>
+  <#if dependencies[depKey]??>
+# ${depKey?cap_first} Dependencies
+    <#list dependencies[depKey] as dep>
 ${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
-</#list>
-<#else>
-# Koin Dependencies
-<#list dependencies["koin"] as dep>
-${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
-</#list>
-</#if>
-
-<#if networkClientType=="Retrofit">
-# Retrofit Dependencies
-<#list dependencies["retrofit"] as dep>
-${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
-</#list>
-<#else>
-# Ktor Dependencies
-<#list dependencies["ktor"] as dep>
-${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
-</#list>
-</#if>
-
-# Coroutines Dependencies
-<#list dependencies["coroutines"] as dep>
-${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
-</#list>
-
-
-# Lifecycle Dependencies
-<#list dependencies["viewmodel"] as dep>
-${dep.name} = { module="${dep.library.module}", version.ref="${dep.version.key}" }
+    </#list>
+  </#if>
 </#list>
 
 [plugins]
@@ -86,12 +56,9 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
-<#if dependencyInjectionType=="Hilt">
-${plugins["hilt"].key} = { id="${plugins.hilt.id}", version.ref="${plugins.hilt.version.key}" }
-</#if>
-<#if compileTime=="KSP">
-${plugins["ksp"].key} = { id="${plugins.ksp.id}", version.ref="${plugins.ksp.version.key}" }
-<#else>
-${plugins["kapt"].key} = { id="${plugins.kapt.id}", version.ref="${plugins.kapt.version.key}" }
-</#if>
+<#list pluginList as depKey>
+  <#if plugins[depKey]??>
+${plugins[depKey].key} = { id="${plugins[depKey].id}", version.ref="${plugins[depKey].version.key}" }
+  </#if>
+</#list>
 

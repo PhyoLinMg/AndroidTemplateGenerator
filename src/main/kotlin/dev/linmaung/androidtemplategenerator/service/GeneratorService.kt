@@ -25,9 +25,9 @@ class ProjectGenerator(
                 "projectName" to request.projectName,
                 "packageName" to request.packageName,
                 "packagePath" to request.packageName.replace(".", "/"),
-                "compileTime" to request.compileTime,
-                "networkClientType" to request.networkClientType,
-                "dependencyInjectionType" to request.dependencyInjectionType,
+                "dependencyList" to request.dependencyList,
+                "compilerType" to request.compilerType,
+                "pluginList" to request.pluginList,
                 "dependencies" to dependencyRegistry,
                 "plugins" to pluginRegistry,
                 "versions" to versionRegistry
