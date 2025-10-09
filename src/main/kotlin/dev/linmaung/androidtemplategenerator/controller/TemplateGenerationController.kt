@@ -1,12 +1,11 @@
 package dev.linmaung.androidtemplategenerator.controller
 
 import ProjectGenerator
-import dev.linmaung.androidtemplategenerator.model.basic.BasicRequest
+import dev.linmaung.androidtemplategenerator.model.TemplateRequest
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,7 +18,7 @@ class TemplateGenerationController(
     private val generator: ProjectGenerator
 ) {
     @PostMapping("/basic/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
-    fun generateBasic(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
+    fun generateBasic(@RequestBody request: TemplateRequest): ResponseEntity<ByteArray> {
         return try {
             val zipBytes = generator.generateBasic(request)
             ResponseEntity.ok()

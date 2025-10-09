@@ -9,6 +9,8 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+         maven("https://central.sonatype.com/repository/maven-snapshots/")
+         maven("https://oss.sonatype.com/repository/maven-snapshots/")
     }
 }
 dependencyResolutionManagement {
@@ -20,4 +22,8 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "${projectName}"
-include(":app")
+
+<#list moduleRegistry as module>
+include(":${module.path}")
+</#list>
+
