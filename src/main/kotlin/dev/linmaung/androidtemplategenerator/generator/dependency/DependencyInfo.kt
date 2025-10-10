@@ -9,6 +9,7 @@ data class DependencyInfo(
 
     fun toType(type:String= "ksp"): String {
         return when(type.lowercase()){
+            "api"-> "api"
             else -> {
                 when (name) {
                     "hilt-compiler" -> if (type=="ksp") "ksp" else "kapt"

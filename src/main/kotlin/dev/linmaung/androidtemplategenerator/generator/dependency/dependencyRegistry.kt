@@ -263,14 +263,12 @@ object LibraryConstant{
     val chucker= LibraryRequirement("chucker","com.github.chuckerteam.chucker:library", VersionConstant.chucker)
     val chuckerNoOp= LibraryRequirement("chucker-no-op","com.github.chuckerteam.chucker:library-no-op", VersionConstant.chucker)
 
-
-
 }
 
 object Plugins{
     val hilt= PluginRequirement("hilt","com.google.dagger.hilt.android", VersionConstant.hilt)
     val ksp= PluginRequirement("ksp","com.google.devtools.ksp", VersionConstant.ksp)
     val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
-    val library= PluginRequirement("com.android.library","com.android.library", VersionConstant.agp)
+    val library= PluginRequirement("library","com.android.library", VersionConstant.agp)
     val jetbrainsKotlinJvm= PluginRequirement("org.jetbrains.kotlin.jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
 }

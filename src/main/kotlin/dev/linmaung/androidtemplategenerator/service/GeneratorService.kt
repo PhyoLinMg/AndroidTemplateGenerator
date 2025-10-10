@@ -76,7 +76,7 @@ class ProjectGenerator(
         }
     }
 
-    private fun generateIntermediate(request: TemplateRequest): ByteArray{
+    fun generateIntermediate(request: TemplateRequest): ByteArray{
         val tempDir = Files.createTempDirectory("android-init").toFile()
 
         try {
