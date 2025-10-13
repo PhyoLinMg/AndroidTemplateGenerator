@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.linmaung"
-version = "1.0.1"
+version = "1.1.0"
 description = "The Template Generator for android"
 
 java {

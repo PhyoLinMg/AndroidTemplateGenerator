@@ -270,5 +270,5 @@ object Plugins{
     val ksp= PluginRequirement("ksp","com.google.devtools.ksp", VersionConstant.ksp)
     val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
     val library= PluginRequirement("library","com.android.library", VersionConstant.agp)
-    val jetbrainsKotlinJvm= PluginRequirement("org.jetbrains.kotlin.jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
+    val jetbrainsKotlinJvm= PluginRequirement("jetbrains-kotlin-jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
 }

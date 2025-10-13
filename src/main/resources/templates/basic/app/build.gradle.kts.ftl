@@ -64,18 +64,13 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
    <#list dependencyList as depKey>
-     <#if dependencies[depKey]??>
-       // ${depKey?cap_first} dependencies
-       <#list dependencies[depKey] as dep>
-         <#if (compilerType== "ksp" && dep.name == "hilt-compiler" || dep.name == "room-compiler")>
-       ${dep.toType("ksp")}(libs.${dep.toGradleName()})
-         <#elseif (dep.name == "hilt-compiler" || dep.name == "room-compiler")>
-       ${dep.toType("kapt")}(libs.${dep.toGradleName()})
-         <#else>
-       ${dep.toType("implementation")}(libs.${dep.toGradleName()})
-         </#if>
-       </#list>
-     </#if>
+        <#if dependencies[depKey]??>
+          // ${depKey?cap_first} dependencies
+          <#list dependencies[depKey] as dep>
+          ${dep.toType(${compilerType})}(libs.${dep.toGradleName()})
+            </#if>
+          </#list>
+        </#if>
    </#list>
 
 

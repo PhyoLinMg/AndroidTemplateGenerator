@@ -31,6 +31,8 @@ dependencies {
     api(libs.androidx.compose.ui.tooling.preview)
     api(libs.androidx.compose.material3)
 
-    // navigation
-    api(libs.navigation)
+    <#if dependencyList?seq_contains("navigation")>
+    // Navigation
+    api(libs.navigation.compose)
+    </#if>
 }
