@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import ${packageName}.core.ui.IntermediateTheme
+import ${packageName}.core.ui.${projectName}Theme
 import ${packageName}.navigation.AppNavHost
 
 <#if dependencyList?seq_contains("hilt")>
