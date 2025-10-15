@@ -104,13 +104,69 @@ val dependencyRegistry = mapOf(
             version = VersionConstant.ktor,
             library = LibraryConstant.ktorSerialization,
         )
-    )
+    ),
+    "room" to listOf(
+        DependencyInfo(
+            name= "room-compiler",
+            version = VersionConstant.room,
+            library = LibraryConstant.roomCompiler,
+        ),
+        DependencyInfo(
+            name= "room-runtime",
+            version = VersionConstant.room,
+            library = LibraryConstant.roomRuntime,
+        ),
+        DependencyInfo(
+            name= "room-ktx",
+            version = VersionConstant.room,
+            library = LibraryConstant.roomKtx,
+        ),
+        DependencyInfo(
+            name= "room-paging",
+            version = VersionConstant.room,
+            library = LibraryConstant.roomPaging,)
+    ),
+    "glide" to listOf(
+        DependencyInfo(
+            name= "glide",
+            version = VersionConstant.glide,
+            library = LibraryConstant.glide,
+        )
+    ),
+    "navigation" to listOf(
+        DependencyInfo(
+            name= "navigation-compose",
+            version = VersionConstant.navigation,
+            library = LibraryConstant.navigation,
+        )
+    ),
+    "timber" to listOf(
+        DependencyInfo(
+            name= "timber",
+            version = VersionConstant.timber,
+            library = LibraryConstant.timber,
+        )
+    ),
+    "chucker" to listOf(
+        DependencyInfo(name = "chucker", version = VersionConstant.chucker, library = LibraryConstant.chucker),
+        DependencyInfo(name = "chucker-no-op", version = VersionConstant.chucker, library= LibraryConstant.chuckerNoOp)
+    ),
 )
 
 val pluginRegistry = mapOf(
     "hilt" to Plugins.hilt,
     "ksp" to Plugins.ksp,
-    "kapt" to Plugins.kapt
+    "kapt" to Plugins.kapt,
+    "library" to Plugins.library,
+    "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm
+)
+
+val intermediateModuleRegistry= listOf(
+    ModuleInfo("app"),
+    ModuleInfo("core"),
+    ModuleInfo("data"),
+    ModuleInfo("domain"),
+    ModuleInfo("feature:home")
 )
 
 val versionRegistry= mapOf(
@@ -140,12 +196,31 @@ val versionRegistry= mapOf(
     "ktor" to listOf(
         VersionConstant.ktor
     ),
+    "room" to listOf(
+        VersionConstant.room
+    ),
+    "navigation" to listOf(
+        VersionConstant.navigation
+    ),
+    "glide" to listOf(
+        VersionConstant.glide
+    ),
+    "timber" to listOf(
+        VersionConstant.timber
+    ),
+    "chucker" to listOf(
+        VersionConstant.chucker
+    ),
+    "jetbrainsKotlinJvm" to listOf(
+        VersionConstant.jetbrainsKotlinJvm
+    )
 )
 
 object VersionConstant{
     val retrofit= VersionRequirement("retrofit","3.0.0")
     val okhttp = VersionRequirement("okhttp", "5.1.0")
     val kotlin= VersionRequirement("kotlin", "2.2.20")
+    val agp= VersionRequirement("agp","8.13.0")
 
     val hilt= VersionRequirement("hilt","2.57.2")
     val hiltx= VersionRequirement("hiltx","1.3.0")
@@ -156,6 +231,13 @@ object VersionConstant{
     val koin= VersionRequirement("koin","4.1.1")
 
     val ktor = VersionRequirement("ktor","3.3.0")
+    val room = VersionRequirement("room","2.8.1")
+    val glide= VersionRequirement("glide","5.0.5")
+    val chucker= VersionRequirement("chucker","4.2.0")
+    val navigation= VersionRequirement("navigation","2.7.0")
+    val timber= VersionRequirement("timber","5.0.1")
+    val jetbrainsKotlinJvm= VersionRequirement("jetbrainsKotlinJvm","2.2.20")
+
 }
 
 object LibraryConstant{
@@ -181,10 +263,27 @@ object LibraryConstant{
     val coroutinesAndroid= LibraryRequirement("coroutines-android","org.jetbrains.kotlinx:kotlinx-coroutines-android", VersionConstant.coroutines)
 
     val lifecycleViewModel= LibraryRequirement("lifecycle-viewmodel","androidx.lifecycle:lifecycle-viewmodel-ktx", VersionConstant.lifecycle)
+
+    val roomCompiler= LibraryRequirement("room-compiler","androidx.room:room-compiler", VersionConstant.room)
+    val roomRuntime= LibraryRequirement("room-runtime","androidx.room:room-runtime", VersionConstant.room)
+    val roomKtx= LibraryRequirement("room-ktx","androidx.room:room-ktx", VersionConstant.room)
+    val roomPaging= LibraryRequirement("room-paging","androidx.room:room-paging", VersionConstant.room)
+
+    val glide= LibraryRequirement("glide","com.github.bumptech.glide:glide", VersionConstant.glide)
+
+    val navigation= LibraryRequirement("navigation-compose","androidx.navigation:navigation-compose", VersionConstant.navigation)
+
+    val timber= LibraryRequirement("timber","com.jakewharton.timber:timber", VersionConstant.timber)
+
+    val chucker= LibraryRequirement("chucker","com.github.chuckerteam.chucker:library", VersionConstant.chucker)
+    val chuckerNoOp= LibraryRequirement("chucker-no-op","com.github.chuckerteam.chucker:library-no-op", VersionConstant.chucker)
+
 }
 
 object Plugins{
     val hilt= PluginRequirement("hilt","com.google.dagger.hilt.android", VersionConstant.hilt)
     val ksp= PluginRequirement("ksp","com.google.devtools.ksp", VersionConstant.ksp)
     val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
+    val library= PluginRequirement("library","com.android.library", VersionConstant.agp)
+    val jetbrainsKotlinJvm= PluginRequirement("jetbrains-kotlin-jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
 }

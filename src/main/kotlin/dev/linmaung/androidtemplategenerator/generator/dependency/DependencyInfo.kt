@@ -7,7 +7,20 @@ data class DependencyInfo(
 ){
     fun toGradleName(): String = name.replace("-",".")
 
-    fun toType(type: String= "implementation"): String = type.lowercase()
+    fun toType(type:String= "ksp"): String {
+        return when(type.lowercase()){
+            "api"-> "api"
+            else -> {
+                when (name) {
+                    "hilt-compiler" -> if (type=="ksp") "ksp" else "kapt"
+                    "room-compiler" -> if (type=="ksp") "ksp" else "kapt"
+                    "chucker" -> "debugImplementation"
+                    "chucker-no-op" -> "releaseImplementation"
+                    else -> "implementation"
+                }
+            }
+        }
+    }
 }
 
 data class VersionRequirement(
@@ -30,4 +43,9 @@ data class PluginRequirement(
     val key: String,
     val id: String,
     val version: VersionRequirement
+)
+
+
+data class ModuleInfo(
+    val path:String
 )

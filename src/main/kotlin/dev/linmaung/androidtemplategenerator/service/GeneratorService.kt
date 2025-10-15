@@ -1,9 +1,12 @@
+import dev.linmaung.androidtemplategenerator.generator.dependency.ModuleInfo
 import dev.linmaung.androidtemplategenerator.generator.dependency.dependencyRegistry
+import dev.linmaung.androidtemplategenerator.generator.dependency.intermediateModuleRegistry
 import dev.linmaung.androidtemplategenerator.generator.dependency.pluginRegistry
 import dev.linmaung.androidtemplategenerator.generator.dependency.versionRegistry
 import dev.linmaung.androidtemplategenerator.generator.templates.CommonTemplate
 import dev.linmaung.androidtemplategenerator.generator.templates.basic.BasicTemplate
-import dev.linmaung.androidtemplategenerator.model.basic.BasicRequest
+import dev.linmaung.androidtemplategenerator.generator.templates.interemediate.IntermediateTemplate
+import dev.linmaung.androidtemplategenerator.model.TemplateRequest
 import freemarker.template.Configuration
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream
@@ -17,7 +20,7 @@ import java.nio.file.Files
 class ProjectGenerator(
     private val freemarkerConfig: Configuration
 ) {
-    fun generateBasic(request: BasicRequest): ByteArray {
+    fun generateBasic(request: TemplateRequest): ByteArray {
         val tempDir = Files.createTempDirectory("android-init").toFile()
 
         try {
@@ -30,7 +33,8 @@ class ProjectGenerator(
                 "pluginList" to request.pluginList,
                 "dependencies" to dependencyRegistry,
                 "plugins" to pluginRegistry,
-                "versions" to versionRegistry
+                "versions" to versionRegistry,
+                "moduleRegistry" to listOf(ModuleInfo("app"))
             )
 
             val template= BasicTemplate.basicTemplate+ CommonTemplate.commonTemplate
@@ -72,8 +76,49 @@ class ProjectGenerator(
         }
     }
 
-    private fun generateIntermediate(){
+    fun generateIntermediate(request: TemplateRequest): ByteArray{
+        val tempDir = Files.createTempDirectory("android-init").toFile()
+        try {
+            val model = mapOf(
+                "projectName" to request.projectName,
+                "packageName" to request.packageName,
+                "packagePath" to request.packageName.replace(".", "/"),
+                "dependencyList" to request.dependencyList,
+                "compilerType" to request.compilerType,
+                "pluginList" to request.pluginList,
+                "dependencies" to dependencyRegistry,
+                "plugins" to pluginRegistry,
+                "versions" to versionRegistry,
+                "moduleRegistry" to intermediateModuleRegistry
+            )
 
+            val template= IntermediateTemplate.intermediateTemplate + CommonTemplate.commonTemplate
+            template.forEach { basicPath ->
+                val resolvedTargetDir = resolveTargetDirectory(basicPath.targetDirectory, model, tempDir)
+                copyAndProcessTemplate(basicPath.templatePath, resolvedTargetDir, model, basicPath.targetFilename)
+            }
+
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            ZipArchiveOutputStream(byteArrayOutputStream).use { zipOut ->
+                tempDir.walk()
+                    .filter { it.isFile }
+                    .forEach { file ->
+                        val relativePath = tempDir.toPath().relativize(file.toPath()).toString()
+                        val entry = ZipArchiveEntry(relativePath)
+                        entry.size = file.length()
+
+                        zipOut.putArchiveEntry(entry)
+                        file.inputStream().use { it.copyTo(zipOut) }
+                        zipOut.closeArchiveEntry()
+                    }
+                zipOut.finish()
+            }
+
+            return byteArrayOutputStream.toByteArray()
+        } finally {
+            // Clean up temporary directory
+            tempDir.deleteRecursively()
+        }
     }
     private fun generateAdvanced(){
 

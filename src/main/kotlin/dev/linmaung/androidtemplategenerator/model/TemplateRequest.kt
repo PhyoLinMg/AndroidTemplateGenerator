@@ -1,6 +1,6 @@
-package dev.linmaung.androidtemplategenerator.model.basic
+package dev.linmaung.androidtemplategenerator.model
 
-data class BasicRequest(
+data class TemplateRequest(
     val projectName: String,
     val packageName: String,
     val compilerType: String = "ksp",
@@ -15,16 +15,16 @@ data class BasicRequest(
                 plugins.add("hilt")
             }
 
+
             // Add compiler plugin if any dependency needs annotation processing
             val requiresAnnotationProcessing = listOf("hilt", "room", "moshi")
             if (dependencyList.any { it in requiresAnnotationProcessing }) {
                 plugins.add(compilerType.lowercase())
             }
 
+
             return plugins.distinct()
         }
 
 
 }
-
-

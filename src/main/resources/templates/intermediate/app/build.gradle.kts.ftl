@@ -8,7 +8,6 @@ plugins {
         alias(libs.plugins.${plugins[pluginKey].key})
       </#if>
     </#list>
-
 }
 
 android {
@@ -26,14 +25,33 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            debug {
+                isMinifyEnabled= false
+                isShrinkResources= false
+            }
+            release {
+                isMinifyEnabled = true
+                isShrinkResources= true
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
         }
-    }
+        flavorDimensions += "environment"
+
+        productFlavors {
+            register("staging"){
+                dimension="environment"
+                applicationIdSuffix= ".staging"
+                versionName ="-staging"
+            }
+            register("production"){
+                dimension= "environment"
+                //remove this if you don't want application id suffix
+                applicationIdSuffix=".production"
+            }
+        }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -43,10 +61,15 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
+
+    implementation(project(":core"))
+    implementation(project(":feature:home"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -64,12 +87,12 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
    <#list dependencyList as depKey>
-        <#if dependencies[depKey]??>
-          // ${depKey?cap_first} dependencies
-          <#list dependencies[depKey] as dep>
-          ${dep.toType(compilerType)}(libs.${dep.toGradleName()})
-          </#list>
-        </#if>
+     <#if dependencies[depKey]??>
+       // ${depKey?cap_first} dependencies
+       <#list dependencies[depKey] as dep>
+       ${dep.toType(compilerType)}(libs.${dep.toGradleName()})
+       </#list>
+     </#if>
    </#list>
 
 
