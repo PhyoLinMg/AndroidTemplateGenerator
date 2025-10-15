@@ -15,11 +15,13 @@ data class TemplateRequest(
                 plugins.add("hilt")
             }
 
+
             // Add compiler plugin if any dependency needs annotation processing
             val requiresAnnotationProcessing = listOf("hilt", "room", "moshi")
             if (dependencyList.any { it in requiresAnnotationProcessing }) {
                 plugins.add(compilerType.lowercase())
             }
+
 
             return plugins.distinct()
         }

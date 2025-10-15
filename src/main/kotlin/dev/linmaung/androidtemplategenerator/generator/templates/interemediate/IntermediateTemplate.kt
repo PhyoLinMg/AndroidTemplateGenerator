@@ -9,7 +9,7 @@ object IntermediateTemplate {
         GenericPath("intermediate/app/Application.kt.ftl", "app/src/main/java/{packagePath}", "Application.kt"),
         GenericPath("intermediate/app/AndroidManifest.xml.ftl", "app/src/main", "AndroidManifest.xml"),
         GenericPath("intermediate/app/AppNavHost.kt.ftl", "app/src/main/java/{packagePath}/navigation", "AppNavHost.kt"),
-        GenericPath("intermediate/MainActivity.kt.ftl", "app/src/main/java/{packagePath}"),
+        GenericPath("intermediate/app/MainActivity.kt.ftl", "app/src/main/java/{packagePath}"),
 
 
         //Core Module files
@@ -32,7 +32,7 @@ object IntermediateTemplate {
         GenericPath("intermediate/data/repository/ExampleRepositoryImpl.kt.ftl", "data/src/main/java/{packagePath}.data/repository", "ExampleRepositoryImpl.kt"),
         GenericPath("intermediate/data/remote/RemoteDataSource.kt.ftl", "data/src/main/java/{packagePath}.data/remote", "RemoteDataSource.kt"),
         GenericPath("intermediate/data/dto/LocalEntity.kt.ftl", "data/src/main/java/{packagePath}.data/dto/local", "LocalEntity.kt"),
-        GenericPath("intermediate/data/dto/RemoteResponse.kt.ftl", "data/src/main/java/{packagePath}.data/dto/remote", "RemoteResponse.kt"),
+        GenericPath("intermediate/data/dto/RemoteDto.kt.ftl", "data/src/main/java/{packagePath}.data/dto/remote", "RemoteResponse.kt"),
         GenericPath("intermediate/data/local/LocalDao.kt.ftl", "data/src/main/java/{packagePath}.data/local/dao", "LocalDao.kt"),
         GenericPath("intermediate/data/local/LocalDatabase.kt.ftl", "data/src/main/java/{packagePath}.data/local", "LocalDatabase.kt"),
         GenericPath("intermediate/data/AndroidManifest.xml.ftl", "data/src/main"),

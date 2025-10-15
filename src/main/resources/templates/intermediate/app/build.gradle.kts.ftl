@@ -66,6 +66,10 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core"))
+    implementation(project(":feature:home"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -86,8 +90,7 @@ dependencies {
      <#if dependencies[depKey]??>
        // ${depKey?cap_first} dependencies
        <#list dependencies[depKey] as dep>
-       ${dep.toType(${compilerType})}(libs.${dep.toGradleName()})
-         </#if>
+       ${dep.toType(compilerType)}(libs.${dep.toGradleName()})
        </#list>
      </#if>
    </#list>

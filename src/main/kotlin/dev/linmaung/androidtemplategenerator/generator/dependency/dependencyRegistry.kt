@@ -197,7 +197,22 @@ val versionRegistry= mapOf(
         VersionConstant.ktor
     ),
     "room" to listOf(
-
+        VersionConstant.room
+    ),
+    "navigation" to listOf(
+        VersionConstant.navigation
+    ),
+    "glide" to listOf(
+        VersionConstant.glide
+    ),
+    "timber" to listOf(
+        VersionConstant.timber
+    ),
+    "chucker" to listOf(
+        VersionConstant.chucker
+    ),
+    "jetbrainsKotlinJvm" to listOf(
+        VersionConstant.jetbrainsKotlinJvm
     )
 )
 

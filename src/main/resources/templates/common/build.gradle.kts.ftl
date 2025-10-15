@@ -13,5 +13,7 @@ plugins {
     alias(libs.plugins.hilt) apply false
     </#if>
 
+    alias(libs.plugins.library) apply false
+    alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 
 }

@@ -78,7 +78,6 @@ class ProjectGenerator(
 
     fun generateIntermediate(request: TemplateRequest): ByteArray{
         val tempDir = Files.createTempDirectory("android-init").toFile()
-
         try {
             val model = mapOf(
                 "projectName" to request.projectName,

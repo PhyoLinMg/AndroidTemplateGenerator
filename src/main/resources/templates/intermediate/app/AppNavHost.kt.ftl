@@ -1,11 +1,11 @@
-package ${packagePath}.navigation
+package ${packageName}.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import ${packagePath}.feature.home.navigation.homeGraph
+import ${packageName}.feature.home.navigation.homeGraph
 
 @Composable
 fun AppNavHost(navController: NavHostController = rememberNavController(), modifier: Modifier= Modifier) {

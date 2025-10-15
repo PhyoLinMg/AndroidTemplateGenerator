@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import ${packageName}.ui.theme.${projectName}Theme
+import ${packageName}.core.ui.IntermediateTheme
+import ${packageName}.navigation.AppNavHost
+
 <#if dependencyList?seq_contains("hilt")>
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,11 +26,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             ${projectName}Theme{
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyApp(Modifier.padding(innerPadding))
+                    AppNavHost(modifier= Modifier.padding(innerPadding))
                 }
             }
         }
-
     }
 }
 

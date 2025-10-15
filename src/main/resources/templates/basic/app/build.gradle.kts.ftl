@@ -67,8 +67,7 @@ dependencies {
         <#if dependencies[depKey]??>
           // ${depKey?cap_first} dependencies
           <#list dependencies[depKey] as dep>
-          ${dep.toType(${compilerType})}(libs.${dep.toGradleName()})
-            </#if>
+          ${dep.toType(compilerType)}(libs.${dep.toGradleName()})
           </#list>
         </#if>
    </#list>
