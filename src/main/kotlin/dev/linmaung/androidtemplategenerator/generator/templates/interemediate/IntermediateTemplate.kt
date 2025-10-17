@@ -13,7 +13,7 @@ object IntermediateTemplate {
 
 
         //Core Module files
-        GenericPath("intermediate/core/ui/theme.kt.ftl", "core/src/main/java/{packagePath}.core/ui", "Theme.kt"),
+        GenericPath("intermediate/core/ui/Theme.kt.ftl", "core/src/main/java/{packagePath}.core/ui", "Theme.kt"),
         GenericPath("intermediate/core/ui/Typography.kt.ftl", "core/src/main/java/{packagePath}.core/ui", "Typography.kt"),
 
         GenericPath("intermediate/core/network/ApiService.kt.ftl", "core/src/main/java/{packagePath}.core/network", "ApiService.kt"),

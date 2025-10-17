@@ -1,7 +1,8 @@
 package dev.linmaung.androidtemplategenerator.controller
 
-import ProjectGenerator
+
 import dev.linmaung.androidtemplategenerator.model.TemplateRequest
+import dev.linmaung.androidtemplategenerator.service.ProjectGenerator
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

@@ -3,6 +3,7 @@ plugins {
 	kotlin("plugin.spring") version "1.9.25"
 	id("org.springframework.boot") version "3.5.6"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("org.graalvm.buildtools.native") version "0.10.1"
 }
 
 group = "dev.linmaung"
@@ -29,7 +30,6 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
-
 	implementation("org.apache.commons:commons-compress:1.28.0")
 }
 
@@ -41,4 +41,22 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+graalvmNative {
+	binaries {
+		named("main") {
+			imageName.set("app")
+			mainClass.set("dev.linmaung.androidtemplategenerator.AndroidtemplategeneratorApplicationKt")
+			resources.autodetect()
+			buildArgs.addAll(
+				listOf(
+					"--initialize-at-run-time=io.netty.channel.epoll",
+					"--initialize-at-run-time=io.netty.channel.unix",
+					"--initialize-at-run-time=io.netty.resolver.dns",
+					"-H:+ReportExceptionStackTraces"
+				)
+			)
+		}
+	}
 }

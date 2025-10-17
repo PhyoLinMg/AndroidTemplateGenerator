@@ -1,6 +1,6 @@
 package dev.linmaung.androidtemplategenerator.config
 
-import ProjectGenerator
+import dev.linmaung.androidtemplategenerator.service.ProjectGenerator
 import freemarker.template.Configuration
 import freemarker.template.TemplateExceptionHandler
 import org.springframework.context.annotation.Bean
