@@ -6,7 +6,7 @@ object BasicTemplate {
     val basicTemplate= listOf(
 
         // App directory files
-        GenericPath("basic/app/build.gradle.kts.ftl", "app", "build.gradle.kts"),
+        GenericPath("basic/app/build.gradle.kts.ftl.ftl", "app", "build.gradle.kts.ftl"),
         GenericPath("basic/app/Application.kt.ftl", "app/src/main/java/{packagePath}", "Application.kt"),
 
         GenericPath("basic/MainActivity.kt.ftl", "app/src/main/java/{packagePath}"),

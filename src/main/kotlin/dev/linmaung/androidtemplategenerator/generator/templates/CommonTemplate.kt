@@ -14,6 +14,6 @@ object CommonTemplate {
        GenericPath("common/gradlew.bat.ftl",""),
        GenericPath("common/local.properties.ftl",""),
        GenericPath("common/settings.gradle.kts.ftl", ""),
-       GenericPath("common/build.gradle.kts.ftl", ""),
+       GenericPath("common/build.gradle.kts.ftl.ftl", ""),
    )
 }
