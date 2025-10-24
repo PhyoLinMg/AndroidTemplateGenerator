@@ -42,7 +42,7 @@ data class BundleRequirement(
 data class PluginRequirement(
     val key: String,
     val id: String,
-    val version: VersionRequirement
+    val version: VersionRequirement?= null
 )
 
 

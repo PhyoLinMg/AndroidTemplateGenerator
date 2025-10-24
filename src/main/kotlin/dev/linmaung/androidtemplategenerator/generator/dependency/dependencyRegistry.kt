@@ -158,7 +158,10 @@ val pluginRegistry = mapOf(
     "ksp" to Plugins.ksp,
     "kapt" to Plugins.kapt,
     "library" to Plugins.library,
-    "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm
+    "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm,
+    "advancedPlugins" to listOf(
+        Plugins.advancedKsp("")
+    )
 )
 
 val intermediateModuleRegistry= listOf(
@@ -286,4 +289,11 @@ object Plugins{
     val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
     val library= PluginRequirement("library","com.android.library", VersionConstant.agp)
     val jetbrainsKotlinJvm= PluginRequirement("jetbrains-kotlin-jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
+
+
+
+    // advanced used plugins with build conventions
+    fun advancedHilt(name:String) = PluginRequirement("$name-hilt", id= "$name.hilt", null)
+    fun advancedKsp(name:String) = PluginRequirement("$name-ksp", id= "$name.ksp", null)
+
 }
