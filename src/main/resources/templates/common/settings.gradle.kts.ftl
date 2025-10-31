@@ -1,4 +1,8 @@
 pluginManagement {
+
+    <#if type=="advanced">
+    includeBuild("build-logic")
+    </#if>
     repositories {
         google {
             content {

@@ -160,7 +160,13 @@ val pluginRegistry = mapOf(
     "library" to Plugins.library,
     "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm,
     "advancedPlugins" to listOf(
-        Plugins.advancedKsp("")
+        Plugins.advancedCompose,
+        Plugins.advancedHilt,
+        Plugins.advancedRoom,
+        Plugins.advancedJvmLibrary,
+        Plugins.advancedFeature,
+        Plugins.advancedLibrary,
+        Plugins.advancedFlavors
     )
 )
 
@@ -170,6 +176,16 @@ val intermediateModuleRegistry= listOf(
     ModuleInfo("data"),
     ModuleInfo("domain"),
     ModuleInfo("feature:home")
+)
+
+val advancedModuleRegistry= listOf(
+    ModuleInfo("app"),
+    ModuleInfo("core:database"),
+    ModuleInfo("core:network"),
+    ModuleInfo("core:ui"),
+    ModuleInfo("features:home:data"),
+    ModuleInfo("features:home:presentation"),
+    ModuleInfo("features:home:domain"),
 )
 
 val versionRegistry= mapOf(
@@ -293,7 +309,16 @@ object Plugins{
 
 
     // advanced used plugins with build conventions
-    fun advancedHilt(name:String) = PluginRequirement("$name-hilt", id= "$name.hilt", null)
-    fun advancedKsp(name:String) = PluginRequirement("$name-ksp", id= "$name.ksp", null)
+    val advancedHilt = PluginRequirement("advanced-hilt", id= "advanced.hilt")
+    val advancedRoom = PluginRequirement("advanced-room", id= "advanced.room")
+    val advancedCompose= PluginRequirement("advanced-compose", id= "advanced.compose")
+    val advancedJvmLibrary= PluginRequirement("advanced-jvm-library", id= "advanced.jvm.library")
+    val advancedFlavors= PluginRequirement("advanced-flavors", id= "advanced.flavors")
+    val advancedApplication= PluginRequirement("advanced-application", id= "advanced.application")
+    val advancedTest= PluginRequirement("advanced-test", id= "advanced.test")
+    val advancedFirebase= PluginRequirement("advanced-firebase", id= "advanced.firebase")
+    val advancedFeature= PluginRequirement("advanced-feature", id= "advanced.feature")
+    val advancedLibrary= PluginRequirement("advanced-library", id= "advanced.library")
+
 
 }

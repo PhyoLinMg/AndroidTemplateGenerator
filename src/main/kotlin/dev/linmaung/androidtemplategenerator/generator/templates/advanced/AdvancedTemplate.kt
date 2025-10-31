@@ -5,6 +5,45 @@ import dev.linmaung.androidtemplategenerator.generator.templates.GenericPath
 object AdvancedTemplate {
 
     val advancedTemplate= listOf(
-        GenericPath("advanced/settings.gradle.kts.ftl", "", "settings.gradle.kts"),
+
+        // App Build Module
+        GenericPath("advanced/app/build.gradle.kts.ftl", "app", "build.gradle.kts"),
+        GenericPath("advanced/app/main/AndroidManifest.xml.ftl", "app/src/main", "AndroidManifest.xml"),
+        GenericPath("advanced/app/main/MainActivity.kt.ftl", "app/src/main/java/{packagePath}", "MainActivity.kt"),
+        GenericPath("advanced/app/main/Application.kt.ftl","app/src/main/java/{packagePath}","Application.kt"),
+        GenericPath("advanced/app/main/navigation/AppNavHost.kt.ftl","app/src/main/java/{packagePath}/navigation","AppNavHost.kt"),
+
+
+        // Build Logic Module
+        GenericPath("advanced/buildlogic/external/AndroidApplicationComposeConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidApplicationComposeConventionPlugin.kt"),
+        GenericPath("advanced/buildlogic/external/AndroidApplicationConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidApplicationConventionPlugin.kt"),
+        GenericPath("advanced/buildlogic/external/AndroidRoomConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidRoomConventionPlugin.kt"),
+        GenericPath("advanced/buildlogic/external/HiltConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","HiltConventionPlugin.kt"),
+        GenericPath("advanced/buildlogic/external/AndroidFeatureConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidFeatureConventionPlugin.kt"),
+        GenericPath("advanced/buildlogic/external/AndroidApplicationFlavorPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidApplicationFlavorPlugin.kt"),
+        GenericPath("advanced/buildlogic/source/AndroidCompose.kt.ftl","build-logic/src/main/kotlin/{packagePath}","AndroidCompose.kt"),
+        GenericPath("advanced/buildlogic/source/BuildType.kt.ftl","build-logic/src/main/kotlin/{packagePath}","BuildType.kt"),
+        GenericPath("advanced/buildlogic/source/Flavor.kt.ftl","build-logic/src/main/kotlin/{packagePath}","Flavor.kt"),
+        GenericPath("advanced/buildlogic/source/KotlinAndroid.kt.ftl","build-logic/src/main/kotlin/{packagePath}","KotlinAndroid.kt"),
+        GenericPath("advanced/buildlogic/source/ProjectExtension.kt.ftl","build-logic/src/main/kotlin/{packagePath}","ProjectExtension.kt"),
+        GenericPath("advanced/buildlogic/build.gradle.kts.ftl","build-logic/convention","build.gradle.kts"),
+        GenericPath("advanced/buildlogic/settings.gradle.kts.ftl", "build-logic","settings.gradle.kts"),
+        GenericPath("advanced/buildlogic/gradle.properties", "build-logic","gradle.properties"),
+
+        // Core Database
+
+
+        // Core Network
+
+
+        // Core UI
+
+
+        // Feature Home
+        GenericPath("advanced/features/home/presentation/HomeViewModel.kt.ftl","features/home/src/main/java/{packagePath}/presentation","HomeViewModel.kt"),
+        GenericPath("advanced/features/home/presentation/HomeScreen.kt.ftl","features/home/src/main/java/{packagePath}/presentation","HomeScreen.kt"),
+        GenericPath("advanced/features/home/presentation/HomeNavigation.kt.ftl","features/home/src/main/java/{packagePath}/presentation","HomeNavigation.kt"),
+
+
     )
 }

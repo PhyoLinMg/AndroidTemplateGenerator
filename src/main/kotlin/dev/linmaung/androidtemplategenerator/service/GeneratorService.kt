@@ -1,12 +1,14 @@
 package dev.linmaung.androidtemplategenerator.service
 
 import dev.linmaung.androidtemplategenerator.generator.dependency.ModuleInfo
+import dev.linmaung.androidtemplategenerator.generator.dependency.advancedModuleRegistry
 import dev.linmaung.androidtemplategenerator.generator.dependency.dependencyRegistry
 import dev.linmaung.androidtemplategenerator.generator.dependency.intermediateModuleRegistry
 import dev.linmaung.androidtemplategenerator.generator.dependency.pluginRegistry
 import dev.linmaung.androidtemplategenerator.generator.dependency.versionRegistry
 import dev.linmaung.androidtemplategenerator.generator.templates.CommonTemplate
 import dev.linmaung.androidtemplategenerator.generator.templates.GenericPath
+import dev.linmaung.androidtemplategenerator.generator.templates.advanced.AdvancedTemplate
 import dev.linmaung.androidtemplategenerator.generator.templates.basic.BasicTemplate
 import dev.linmaung.androidtemplategenerator.generator.templates.interemediate.IntermediateTemplate
 import dev.linmaung.androidtemplategenerator.model.TemplateRequest
@@ -99,7 +101,22 @@ class ProjectGenerator(
             val template= IntermediateTemplate.intermediateTemplate + CommonTemplate.commonTemplate
             return generateProject(model, template)
     }
-    private fun generateAdvanced(){
+    fun generateAdvanced(request: TemplateRequest): ByteArray{
+        val model = mapOf(
+            "type" to  "advanced",
+            "projectName" to request.projectName,
+            "packageName" to request.packageName,
+            "packagePath" to request.packageName.replace(".", "/"),
+            "dependencyList" to request.dependencyList,
+            "compilerType" to request.compilerType,
+            "pluginList" to request.pluginList,
+            "dependencies" to dependencyRegistry,
+            "plugins" to pluginRegistry,
+            "versions" to versionRegistry,
+            "moduleRegistry" to advancedModuleRegistry
+        )
+        val template= AdvancedTemplate.advancedTemplate+ CommonTemplate.commonTemplate
+        return generateProject(model, template)
 
     }
     private fun copyAndProcessTemplate(templatePath: String, targetDir: File, model: Map<String, Any?>, targetFilename: String? = null) {
