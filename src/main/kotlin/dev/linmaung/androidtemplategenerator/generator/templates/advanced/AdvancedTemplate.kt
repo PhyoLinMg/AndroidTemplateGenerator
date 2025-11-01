@@ -31,19 +31,32 @@ object AdvancedTemplate {
         GenericPath("advanced/buildlogic/gradle.properties", "build-logic","gradle.properties"),
 
         // Core Database
-
+        GenericPath("advanced/core/database/.gitignore", "core/database", ".gitignore"),
+        GenericPath("advanced/core/database/build.gradle.kts.ftl", "core/database", "build.gradle.kts"),
 
         // Core Network
-
+        GenericPath("advanced/core/network/.gitignore", "core/network", ".gitignore"),
+        GenericPath("advanced/core/network/build.gradle.kts.ftl", "core/network", "build.gradle.kts"),
 
         // Core UI
+        GenericPath("advanced/core/ui/.gitignore", "core/ui", ".gitignore"),
+        GenericPath("advanced/core/ui/build.gradle.kts.ftl", "core/ui", "build.gradle.kts"),
+
+        // Feature Home presentation
+        GenericPath("advanced/features/home/presentation/HomeViewModel.kt.ftl","features/home/src/main/java/{packagePath}","HomeViewModel.kt"),
+        GenericPath("advanced/features/home/presentation/HomeScreen.kt.ftl","features/home/presentation/src/main/java/{packagePath}","HomeScreen.kt"),
+        GenericPath("advanced/features/home/presentation/HomeNavigation.kt.ftl","features/home/presentation/src/main/java/{packagePath}","HomeNavigation.kt"),
+        GenericPath("advanced/features/home/presentation/build.gradle.kts.ftl", "features/home/presentation", "build.gradle.kts"),
 
 
-        // Feature Home
-        GenericPath("advanced/features/home/presentation/HomeViewModel.kt.ftl","features/home/src/main/java/{packagePath}/presentation","HomeViewModel.kt"),
-        GenericPath("advanced/features/home/presentation/HomeScreen.kt.ftl","features/home/src/main/java/{packagePath}/presentation","HomeScreen.kt"),
-        GenericPath("advanced/features/home/presentation/HomeNavigation.kt.ftl","features/home/src/main/java/{packagePath}/presentation","HomeNavigation.kt"),
+
+        // Feature Home Data
+        GenericPath("advanced/features/home/data/build.gradle.kts.ftl", "features/home/data", "build.gradle.kts"),
+        GenericPath("advanced/features/home/data/.gitignore", "features/home/data", ".gitignore"),
 
 
+        // Feature Home Domain
+        GenericPath("advanced/features/home/domain/build.gradle.kts.ftl", "features/home/domain", "build.gradle.kts"),
+        GenericPath("advanced/features/home/domain/.gitignore", "features/home/domain", ".gitignore"),
     )
 }
