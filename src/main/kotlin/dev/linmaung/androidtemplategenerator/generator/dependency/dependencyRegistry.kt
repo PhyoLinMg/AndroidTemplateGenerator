@@ -159,6 +159,7 @@ val pluginRegistry = mapOf(
     "kapt" to Plugins.kapt,
     "library" to Plugins.library,
     "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm,
+
     "advancedPlugins" to listOf(
         Plugins.advancedCompose,
         Plugins.advancedHilt,
@@ -166,7 +167,10 @@ val pluginRegistry = mapOf(
         Plugins.advancedJvmLibrary,
         Plugins.advancedFeature,
         Plugins.advancedLibrary,
-        Plugins.advancedFlavors
+        Plugins.advancedFlavors,
+        Plugins.advancedApplication,
+        Plugins.advancedTest,
+        Plugins.advancedFirebase,
     )
 )
 
@@ -304,6 +308,8 @@ object Plugins{
     val ksp= PluginRequirement("ksp","com.google.devtools.ksp", VersionConstant.ksp)
     val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
     val library= PluginRequirement("library","com.android.library", VersionConstant.agp)
+
+    val kotlinSerialization= PluginRequirement("kotlin-serialization","org.jetbrains.kotlin.plugin.serialization", VersionConstant.kotlin)
     val jetbrainsKotlinJvm= PluginRequirement("jetbrains-kotlin-jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
 
 
