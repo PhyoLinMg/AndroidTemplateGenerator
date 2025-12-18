@@ -1,4 +1,3 @@
-
 import ${packageName}.BuildType
 
 plugins {
@@ -50,36 +49,26 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.interests)
-    implementation(projects.feature.foryou)
-    implementation(projects.feature.bookmarks)
-    implementation(projects.feature.topic)
-    implementation(projects.feature.search)
-    implementation(projects.feature.settings)
-
-    implementation(projects.core.common)
+    implementation(projects.core.database)
+    implementation(projects.core.network)
+    implementation(projects.core.navigation)
     implementation(projects.core.ui)
-    implementation(projects.core.designsystem)
-    implementation(projects.core.data)
-    implementation(projects.core.model)
-    implementation(projects.core.analytics)
-    implementation(projects.sync.work)
+
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.material3.adaptive)
-    implementation(libs.androidx.compose.material3.adaptive.layout)
-    implementation(libs.androidx.compose.material3.adaptive.navigation)
-    implementation(libs.androidx.compose.material3.windowSizeClass)
+
+
+
     implementation(libs.androidx.compose.runtime.tracing)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.profileinstaller)
-    implementation(libs.androidx.tracing.ktx)
-    implementation(libs.androidx.window.core)
+
+
+
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
     implementation(libs.kotlinx.serialization.json)
@@ -90,26 +79,4 @@ dependencies {
     debugImplementation(projects.uiTestHiltManifest)
 
     kspTest(libs.hilt.compiler)
-
-    testImplementation(projects.core.dataTest)
-    testImplementation(projects.core.datastoreTest)
-    testImplementation(libs.hilt.android.testing)
-    testImplementation(projects.sync.syncTest)
-    testImplementation(libs.kotlin.test)
-
-    testDemoImplementation(libs.androidx.navigation.testing)
-    testDemoImplementation(libs.robolectric)
-    testDemoImplementation(libs.roborazzi)
-    testDemoImplementation(projects.core.screenshotTesting)
-    testDemoImplementation(projects.core.testing)
-
-    androidTestImplementation(projects.core.testing)
-    androidTestImplementation(projects.core.dataTest)
-    androidTestImplementation(projects.core.datastoreTest)
-    androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.kotlin.test)
-
-
 }

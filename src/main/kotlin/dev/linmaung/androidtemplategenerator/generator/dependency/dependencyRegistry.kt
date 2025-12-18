@@ -186,6 +186,7 @@ val advancedModuleRegistry= listOf(
     ModuleInfo("app"),
     ModuleInfo("core:database"),
     ModuleInfo("core:network"),
+    ModuleInfo("core:navigation"),
     ModuleInfo("core:ui"),
     ModuleInfo("features:home:data"),
     ModuleInfo("features:home:presentation"),

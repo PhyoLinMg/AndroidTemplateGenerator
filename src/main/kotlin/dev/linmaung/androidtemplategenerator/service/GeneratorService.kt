@@ -40,7 +40,7 @@ class ProjectGenerator(
                 "moduleRegistry" to listOf(ModuleInfo("app"))
         )
 
-        val template= BasicTemplate.basicTemplate+ CommonTemplate.commonTemplate
+        val template= BasicTemplate.basicTemplate+ CommonTemplate.getCommonTemplatePlus()
         return generateProject(model, template)
     }
 
@@ -98,7 +98,7 @@ class ProjectGenerator(
                 "versions" to versionRegistry,
                 "moduleRegistry" to intermediateModuleRegistry
             )
-            val template= IntermediateTemplate.intermediateTemplate + CommonTemplate.commonTemplate
+            val template= IntermediateTemplate.intermediateTemplate + CommonTemplate.getCommonTemplatePlus()
             return generateProject(model, template)
     }
     fun generateAdvanced(request: TemplateRequest): ByteArray{

@@ -12,7 +12,7 @@ object AdvancedTemplate {
         GenericPath("advanced/app/main/MainActivity.kt.ftl", "app/src/main/java/{packagePath}", "MainActivity.kt"),
         GenericPath("advanced/app/main/Application.kt.ftl","app/src/main/java/{packagePath}","Application.kt"),
         GenericPath("advanced/app/main/navigation/AppNavHost.kt.ftl","app/src/main/java/{packagePath}/navigation","AppNavHost.kt"),
-
+        GenericPath("advanced/gradle/libs.version.toml.ftl", "gradle"),
 
         // Build Logic Module
         GenericPath("advanced/buildlogic/convention/external/AndroidApplicationComposeConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidApplicationComposeConventionPlugin.kt"),
@@ -21,11 +21,11 @@ object AdvancedTemplate {
         GenericPath("advanced/buildlogic/convention/external/HiltConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","HiltConventionPlugin.kt"),
         GenericPath("advanced/buildlogic/convention/external/AndroidFeatureConventionPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidFeatureConventionPlugin.kt"),
         GenericPath("advanced/buildlogic/convention/external/AndroidApplicationFlavorPlugin.kt.ftl","build-logic/convention/src/main/kotlin","AndroidApplicationFlavorPlugin.kt"),
-        GenericPath("advanced/buildlogic/convention/source/AndroidCompose.kt.ftl","build-logic/src/main/kotlin/{packagePath}","AndroidCompose.kt"),
-        GenericPath("advanced/buildlogic/convention/source/BuildType.kt.ftl","build-logic/src/main/kotlin/{packagePath}","BuildType.kt"),
-        GenericPath("advanced/buildlogic/convention/source/Flavor.kt.ftl","build-logic/src/main/kotlin/{packagePath}","Flavor.kt"),
-        GenericPath("advanced/buildlogic/convention/source/KotlinAndroid.kt.ftl","build-logic/src/main/kotlin/{packagePath}","KotlinAndroid.kt"),
-        GenericPath("advanced/buildlogic/convention/source/ProjectExtension.kt.ftl","build-logic/src/main/kotlin/{packagePath}","ProjectExtension.kt"),
+        GenericPath("advanced/buildlogic/convention/source/AndroidCompose.kt.ftl","build-logic/convention/src/main/kotlin/{packagePath}","AndroidCompose.kt"),
+        GenericPath("advanced/buildlogic/convention/source/BuildType.kt.ftl","build-logic/convention/src/main/kotlin/{packagePath}","BuildType.kt"),
+        GenericPath("advanced/buildlogic/convention/source/Flavor.kt.ftl","build-logic/convention/src/main/kotlin/{packagePath}","Flavor.kt"),
+        GenericPath("advanced/buildlogic/convention/source/KotlinAndroid.kt.ftl","build-logic/convention/src/main/kotlin/{packagePath}","KotlinAndroid.kt"),
+        GenericPath("advanced/buildlogic/convention/source/ProjectExtension.kt.ftl","build-logic/convention/src/main/kotlin/{packagePath}","ProjectExtension.kt"),
         GenericPath("advanced/buildlogic/convention/build.gradle.kts.ftl","build-logic/convention","build.gradle.kts"),
         GenericPath("advanced/buildlogic/settings.gradle.kts.ftl", "build-logic","settings.gradle.kts"),
         GenericPath("advanced/buildlogic/gradle.properties", "build-logic","gradle.properties"),
@@ -37,6 +37,10 @@ object AdvancedTemplate {
         // Core Network
         GenericPath("advanced/core/network/.gitignore.ftl", "core/network", ".gitignore"),
         GenericPath("advanced/core/network/build.gradle.kts.ftl", "core/network", "build.gradle.kts"),
+
+        // Core Navigation
+        GenericPath("advanced/core/navigation/.gitignore.ftl", "core/navigation", ".gitignore"),
+        GenericPath("advanced/core/navigation/build.gradle.kts.ftl", "core/navigation", "build.gradle.kts"),
 
         // Core UI
         GenericPath("advanced/core/ui/.gitignore.ftl", "core/ui", ".gitignore.ftl"),
@@ -51,11 +55,11 @@ object AdvancedTemplate {
 
         // Feature Home Data
         GenericPath("advanced/features/home/data/build.gradle.kts.ftl", "features/home/data", "build.gradle.kts"),
-        GenericPath("advanced/features/home/data/.gitignore.ftl", "features/home/data", ".gitignore.ftl"),
+        GenericPath("advanced/features/home/data/.gitignore.ftl", "features/home/data", ".gitignore"),
 
 
         // Feature Home Domain
         GenericPath("advanced/features/home/domain/build.gradle.kts.ftl", "features/home/domain", "build.gradle.kts"),
-        GenericPath("advanced/features/home/domain/.gitignore.ftl", "features/home/domain", ".gitignore.ftl"),
+        GenericPath("advanced/features/home/domain/.gitignore.ftl", "features/home/domain", ".gitignore"),
     )
 }
