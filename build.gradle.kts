@@ -49,12 +49,15 @@ graalvmNative {
 			imageName.set("app")
 			mainClass.set("dev.linmaung.androidtemplategenerator.AndroidtemplategeneratorApplicationKt")
 			resources.autodetect()
+
 			buildArgs.addAll(
 				listOf(
 					"--initialize-at-run-time=io.netty.channel.epoll",
 					"--initialize-at-run-time=io.netty.channel.unix",
 					"--initialize-at-run-time=io.netty.resolver.dns",
-					"-H:+ReportExceptionStackTraces"
+					"-H:+ReportExceptionStackTraces",
+                    "-J-Xmx5g",
+                    "-J-Xms2g"
 				)
 			)
 		}
