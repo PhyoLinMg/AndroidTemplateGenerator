@@ -1,7 +1,8 @@
 package dev.linmaung.androidtemplategenerator.controller
 
-import ProjectGenerator
+
 import dev.linmaung.androidtemplategenerator.model.TemplateRequest
+import dev.linmaung.androidtemplategenerator.service.ProjectGenerator
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -32,11 +33,21 @@ class TemplateGenerationController(
         }
     }
 
-    //    @PostMapping("/advanced/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
-//    fun generateAdvanced(@RequestBody request: BasicRequest): ResponseEntity<ByteArray> {
-//
-//    }
-//
+        @PostMapping("/advanced/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
+    fun generateAdvanced(@RequestBody request: TemplateRequest): ResponseEntity<ByteArray> {
+            return try {
+                val zipBytes = generator.generateAdvanced(request)
+                ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"${request.projectName}.zip\"")
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
+                    .header(HttpHeaders.CONTENT_LENGTH, zipBytes.size.toString()).body(zipBytes)
+            } catch (e: Exception) {
+                // Log the error for debugging
+                e.printStackTrace()
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+            }
+    }
+
     @PostMapping("/intermediate/generate", produces = [MediaType.APPLICATION_OCTET_STREAM_VALUE])
     fun generateIntermediate(@RequestBody request: TemplateRequest): ResponseEntity<ByteArray> {
         return try {

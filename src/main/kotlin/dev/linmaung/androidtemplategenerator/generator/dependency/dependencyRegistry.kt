@@ -158,7 +158,20 @@ val pluginRegistry = mapOf(
     "ksp" to Plugins.ksp,
     "kapt" to Plugins.kapt,
     "library" to Plugins.library,
-    "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm
+    "jetbrainsKotlinJvm" to Plugins.jetbrainsKotlinJvm,
+
+    "advancedPlugins" to listOf(
+        Plugins.advancedCompose,
+        Plugins.advancedHilt,
+        Plugins.advancedRoom,
+        Plugins.advancedJvmLibrary,
+        Plugins.advancedFeature,
+        Plugins.advancedLibrary,
+        Plugins.advancedFlavors,
+        Plugins.advancedApplication,
+        Plugins.advancedTest,
+        Plugins.advancedFirebase,
+    )
 )
 
 val intermediateModuleRegistry= listOf(
@@ -167,6 +180,17 @@ val intermediateModuleRegistry= listOf(
     ModuleInfo("data"),
     ModuleInfo("domain"),
     ModuleInfo("feature:home")
+)
+
+val advancedModuleRegistry= listOf(
+    ModuleInfo("app"),
+    ModuleInfo("core:database"),
+    ModuleInfo("core:network"),
+    ModuleInfo("core:navigation"),
+    ModuleInfo("core:ui"),
+    ModuleInfo("features:home:data"),
+    ModuleInfo("features:home:presentation"),
+    ModuleInfo("features:home:domain"),
 )
 
 val versionRegistry= mapOf(
@@ -285,5 +309,23 @@ object Plugins{
     val ksp= PluginRequirement("ksp","com.google.devtools.ksp", VersionConstant.ksp)
     val kapt= PluginRequirement("kapt","org.jetbrains.kotlin.kapt", VersionConstant.kotlin)
     val library= PluginRequirement("library","com.android.library", VersionConstant.agp)
+
+    val kotlinSerialization= PluginRequirement("kotlin-serialization","org.jetbrains.kotlin.plugin.serialization", VersionConstant.kotlin)
     val jetbrainsKotlinJvm= PluginRequirement("jetbrains-kotlin-jvm","org.jetbrains.kotlin.jvm", VersionConstant.jetbrainsKotlinJvm)
+
+
+
+    // advanced used plugins with build conventions
+    val advancedHilt = PluginRequirement("advanced-hilt", id= "advanced.hilt")
+    val advancedRoom = PluginRequirement("advanced-room", id= "advanced.room")
+    val advancedCompose= PluginRequirement("advanced-compose", id= "advanced.compose")
+    val advancedJvmLibrary= PluginRequirement("advanced-jvm-library", id= "advanced.jvm.library")
+    val advancedFlavors= PluginRequirement("advanced-flavors", id= "advanced.flavors")
+    val advancedApplication= PluginRequirement("advanced-application", id= "advanced.application")
+    val advancedTest= PluginRequirement("advanced-test", id= "advanced.test")
+    val advancedFirebase= PluginRequirement("advanced-firebase", id= "advanced.firebase")
+    val advancedFeature= PluginRequirement("advanced-feature", id= "advanced.feature")
+    val advancedLibrary= PluginRequirement("advanced-library", id= "advanced.library")
+
+
 }
